@@ -1,9 +1,12 @@
 import '../App.css';
 
-const Pixel = ({index, color, changePixelColor}) => {
+const Pixel = ({index, color, highlightIdx, selectPixel}) => {
+  const highlighted = highlightIdx === index;
+
   return (
-    <div className="grid-item" style={{backgroundColor: color}} 
-      onClick={() => changePixelColor(index)} />
+    <div style={{backgroundColor: color}} onClick={() => selectPixel(index)}
+    className={highlighted ? "highlighted-grid-item" : "grid-item"}>
+    </div>
   );
 };
 

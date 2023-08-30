@@ -15,9 +15,9 @@
 
 .grid-cont {
   width: 80vw;
-  height: 60vw;
+  height: 30vw;
   display: grid;
-  grid-template-columns: repeat(10, 10%);
+  grid-template-columns: repeat(30, 3.33%);
   background-color: #272727;
   padding: 5px;
 }
@@ -26,4 +26,9 @@
   width: 1fr;
   height: 1fr;
   border: 1px solid rgba(0, 0, 0, 1);
+}
+.highlighted-grid-item {
+  width: 1fr;
+  height: 1fr;
+  border: 1px solid rgb(255, 255, 255);
 }
