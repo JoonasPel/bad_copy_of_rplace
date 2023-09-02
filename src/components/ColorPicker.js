@@ -1,4 +1,4 @@
-import { Circle } from "@uiw/react-color";
+import Circle from "@uiw/react-color-circle";
 import { useState } from "react";
 
 const ColorPicker = ({changeSelectedColor}) => {

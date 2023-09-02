@@ -1,6 +1,5 @@
 import './App.css';
 import Canvas from './components/Canvas';
-import ColorPicker from './components/ColorPicker';
 
 const App = () => {
   return (
