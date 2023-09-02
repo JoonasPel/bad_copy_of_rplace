@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import '../App.css';
 import Pixel from './Pixel';
+import ColorPicker from './ColorPicker';
 
 const URL = "https://l0c06d1a03.execute-api.eu-north-1.amazonaws.com"+
 "/prod/data";
@@ -9,20 +10,19 @@ const URL = "https://l0c06d1a03.execute-api.eu-north-1.amazonaws.com"+
 const Canvas = () => {
   const [pixels, setPixels] = useState([]);
   const [highlightedPixelIdx, setHighlightedPixelIdx] = useState(-1);
-  const [text, setText] = useState("");
+  const [hex, setHex] = useState("#FFFFFF");
 
   const getData = async () => {
     const res = await axios.get(URL, {params: {"canvas": 1}});
     setPixels(res?.data);
   }
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const sendChangeColorToServer = async () => {
     try {
-      const res = await axios.get(URL, {
+      await axios.get(URL, {
         params: {
           "index": highlightedPixelIdx,
-          "hex": text,
+          hex,
         }
       });
       await getData();
@@ -31,12 +31,11 @@ const Canvas = () => {
     }
   };
 
-  const handleChange = (event) => {
-    setText(event.target.value);
+  const changeSelectedColor = (colorHex) => {
+    setHex(colorHex);
   }
 
   const selectPixel = (index) => {
-    console.log(index);
     setHighlightedPixelIdx(index);
   };
 
@@ -45,20 +44,17 @@ const Canvas = () => {
   }, []);
 
   return (
+    <>
     <div className="grid-cont">
       {pixels.map((pixel, index) => (
       <Pixel key={index} index={index} color={pixel}
         highlightIdx={highlightedPixelIdx} selectPixel={selectPixel}/>
       ))}
-
-      <form onSubmit={handleSubmit}>
-        <label>
-          HexColor:
-          <input type="text" value={text} onChange={handleChange}/>
-        </label>
-        <input type="submit" value="Change Color" />
-      </form>
+    
+      <ColorPicker changeSelectedColor={changeSelectedColor}/>
     </div>
+    <button onClick={sendChangeColorToServer}>Change Color</button>
+    </>
   );
 };
 

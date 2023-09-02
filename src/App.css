@@ -15,7 +15,7 @@
 
 .grid-cont {
   width: 80vw;
-  height: 30vw;
+  height: 40vw;
   display: grid;
   grid-template-columns: repeat(30, 3.33%);
   background-color: #272727;

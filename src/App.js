@@ -4,12 +4,14 @@ import ColorPicker from './components/ColorPicker';
 
 const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Canvas />
-        <ColorPicker />
-      </header>
-    </div>
+    <>
+      <div className="App">
+        <header className="App-header">
+          <Canvas />
+        </header>
+      </div>
+      
+    </>
   );
 };
 
