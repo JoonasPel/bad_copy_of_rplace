@@ -11,10 +11,19 @@ const Canvas = () => {
   const [pixels, setPixels] = useState([]);
   const [highlightedPixelIdx, setHighlightedPixelIdx] = useState(-1);
   const [hex, setHex] = useState("#FFFFFF");
+  const [lastUpdatedTimestamp, setLastUpdatedTimestamp] = useState(0);
 
   const getData = async () => {
-    const res = await axios.get(URL, {params: {"canvas": 1}});
-    setPixels(res?.data);
+    const res = await axios.get(URL, {
+      params: {
+        "canvas": 1,
+        "timestamp": lastUpdatedTimestamp,
+      }
+    });
+    const pixelsArr = res?.data;
+    if (Array.isArray(pixelsArr) && pixelsArr.length > 0) {
+      setPixels(pixelsArr);
+    }
   }
 
   const sendChangeColorToServer = async () => {
@@ -41,6 +50,8 @@ const Canvas = () => {
 
   useEffect(() => {
     getData();
+    const id = setInterval(() => {getData()}, 5000);
+    return () => clearInterval(id);
   }, []);
 
   return (
@@ -50,10 +61,20 @@ const Canvas = () => {
       <Pixel key={index} index={index} color={pixel}
         highlightIdx={highlightedPixelIdx} selectPixel={selectPixel}/>
       ))}
-    
-      <ColorPicker changeSelectedColor={changeSelectedColor}/>
+      <div style={{display: 'flex', width: '40vw'}}>
+        <div className='box'>
+          <ColorPicker changeSelectedColor={changeSelectedColor}/>
+          <button onClick={sendChangeColorToServer} style={{flex: 1}}>
+            Change Color
+          </button>
+        </div>
+        <div className='textBox'>
+          <p>1. Click Pixel</p>
+          <p>2. Click Color</p>
+          <p>3. Click "Change Color"</p>
+        </div>
+      </div>
     </div>
-    <button onClick={sendChangeColorToServer}>Change Color</button>
     </>
   );
 };

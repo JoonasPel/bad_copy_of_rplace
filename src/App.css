@@ -15,7 +15,7 @@
 
 .grid-cont {
   width: 80vw;
-  height: 40vw;
+  height: 60vh;
   display: grid;
   grid-template-columns: repeat(30, 3.33%);
   background-color: #272727;
@@ -31,4 +31,16 @@
   width: 1fr;
   height: 1fr;
   border: 1px solid rgb(255, 255, 255);
+}
+
+.box {
+  flex: 1;
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  padding-left: 10px;
+}
+.textBox {
+  flex: 3;
+  border: 1px solid #ffffff;
+  width: 150px;
 }
