@@ -70,7 +70,7 @@ const Canvas = () => {
         </div>
         <div className='textBox'>
           <p>1. Click Pixel</p>
-          <p>2. Click Color</p>
+          <p>2. Choose Color</p>
           <p>3. Click "Change Color"</p>
         </div>
       </div>
