@@ -65,7 +65,7 @@ const Canvas = () => {
         <div className='box'>
           <ColorPicker changeSelectedColor={changeSelectedColor}/>
           <button onClick={sendChangeColorToServer} style={{flex: 1}}>
-            Change Color
+            Submit
           </button>
         </div>
         <div className='textBox'>
