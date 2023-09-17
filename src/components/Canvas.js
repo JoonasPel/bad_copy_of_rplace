@@ -69,9 +69,9 @@ const Canvas = () => {
           </button>
         </div>
         <div className='textBox'>
-          <p>1. Click Pixel</p>
+          <p>1. Select Pixel</p>
           <p>2. Choose Color</p>
-          <p>3. Click "Change Color"</p>
+          <p>3. Click "Submit"</p>
         </div>
       </div>
     </div>
